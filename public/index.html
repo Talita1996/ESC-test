@@ -7,12 +7,19 @@
     <title>Arduino-Node-SocketIO</title>
 </head>
 <body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off" />
+        <button>Send</button>
+    </form>
+
     <style>
         body {
             transition: all .1s;
             /* transition for smoothness */
         }
     </style>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
 </body>

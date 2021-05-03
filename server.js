@@ -10,7 +10,7 @@ const io = require('socket.io')(Server)
 
 app.use(express.static(__dirname + '/public'))
 
-const sPort = new serialport('COM1', {
+const sPort = new serialport('COM2', {
   // you'll need to check for a your port name first
   baudRate: 9600
 })
@@ -21,6 +21,7 @@ sPort.on('open', () => {
   console.log('Serial Port Opened')
   let lastValue
   io.on('connection', socket => {
+    
     socket.emit('connected')
     let lastValue // we use additional variable to avoid constant sending data to connected socket
     parser.on('data', data => {
@@ -29,6 +30,14 @@ sPort.on('open', () => {
       }
       lastValue = data
     })
+
+    socket.on('ciclo de trabalho', ({ value }) => {
+      console.log(`value ${value}`)
+      // print to console event from web page
+      socket.emit('ciclo de trabalho') // and let page knows it
+      sPort.write(value)
+    })
+
   })
 })
 
