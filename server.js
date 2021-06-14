@@ -24,17 +24,28 @@ sPort.on('open', () => {
     
     socket.emit('connected')
     let lastValue // we use additional variable to avoid constant sending data to connected socket
+
     parser.on('data', data => {
       if (lastValue !== data) {
+        console.log(data)
         socket.emit('data', data)
       }
       lastValue = data
     })
 
     socket.on('ciclo de trabalho', ({ value }) => {
-      console.log(`value ${value}`)
+      value = `ct${value}`
+      console.log(value)
       // print to console event from web page
       socket.emit('ciclo de trabalho') // and let page knows it
+      sPort.write(value)
+    })
+
+    socket.on('frequencia', ({ value }) => {
+      value = `fr${value}`
+      console.log(value)
+      // print to console event from web page
+      socket.emit('frequencia') // and let page knows it
       sPort.write(value)
     })
 
