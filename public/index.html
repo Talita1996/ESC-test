@@ -7,21 +7,15 @@
     <title>Arduino-Node-SocketIO</title>
 </head>
 <body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-        <h2>Ciclo de trabalho</h2>
-        <input id="ciclo" autocomplete="off" />
-        <br />
-        <h2>Frequência</h2>
-        <input id="frequencia" autocomplete="off" />
-        <br />
-        <button>Send</button>
-    </form>
+    <div>
+        <h1>Valor da tensão lida na fonte:</h1>
+        <h6 id="tensao"></h6>
+    </div>
 
     <style>
         body {
             transition: all .1s;
-            /* transition for smoothness */
+            padding: 40px 100px;
         }
     </style>
 

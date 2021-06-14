@@ -32,23 +32,6 @@ sPort.on('open', () => {
       }
       lastValue = data
     })
-
-    socket.on('ciclo de trabalho', ({ value }) => {
-      value = `ct${value}`
-      console.log(value)
-      // print to console event from web page
-      socket.emit('ciclo de trabalho') // and let page knows it
-      sPort.write(value)
-    })
-
-    socket.on('frequencia', ({ value }) => {
-      value = `fr${value}`
-      console.log(value)
-      // print to console event from web page
-      socket.emit('frequencia') // and let page knows it
-      sPort.write(value)
-    })
-
   })
 })
 

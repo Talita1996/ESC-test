@@ -2,6 +2,7 @@ const socket = io.connect('http://localhost:3000')
 var form = document.getElementById('form');
 var ciclo = document.getElementById('ciclo');
 var frequencia = document.getElementById('frequencia');
+var tensao = document.getElementById('tensao');
 
 socket.on('connected', () => {
   console.log('Socket Connected')
@@ -16,21 +17,5 @@ socket.on('click', () => {
 })
 
 socket.on('data', data => {
-    console.log(data)
-  /*document.body.setAttribute('style', `background-color: hsl(${Math.round(data/3)}, 100%, 50%)`)*/
+    tensao.textContent = data
 })
-
-form.addEventListener('submit', function(e) {
-
-  e.preventDefault();
-  if (ciclo.value) {
-    socket.emit('ciclo de trabalho', { value: ciclo.value } );
-    ciclo.value = '';
-  }
-
-  if (frequencia.value) {
-    socket.emit('frequencia', { value: frequencia.value } );
-    frequencia.value = '';
-  }
-
-});
